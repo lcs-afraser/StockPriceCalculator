@@ -74,13 +74,14 @@ struct CalculatorView: View {
     //UI
     var body: some View {
         VStack(spacing: 30) {
-            HStack(spacing: 20) {
                 Group {
                     //Stock Price
-                    Text("Stock Price")
+                  Spacer()
+                    Text("Stock Price at Purchase")
                         .font(.title2)
                         .bold()
                     
+                    //Make the Input
                     TextField("Input", text: $providedStockPrice)
                     
                     //Number of Shares
@@ -88,13 +89,14 @@ struct CalculatorView: View {
                         Text("Number of Shares")
                             .font(.title2)
                             .bold()
+                        
+                        //Make the Input
                         TextField("Input", text: $providedNumberOfShares)
                     }
                 }
-            }
             //Total Value
             Group {
-                Text("Total Value")
+                Text("Total Value of Holdings")
                     .font(.title2)
                     .bold()
                 
