@@ -9,9 +9,24 @@ import SwiftUI
 
 @main
 struct StockPriceCalculatorApp: App {
+    //MARK: Stored Properties
+    @State var history: [Result] = []
+    
+    //MARK: Computed Properties
     var body: some Scene {
         WindowGroup {
-            CalculatorView()
+            TabView {
+                CalculatorView(result: "", history: $history)
+                    .tabItem {
+                        Image(systemName: "dollarsign.circle.fill")
+                        Text("Calculator")
+                    }
+                HistoryView(history: $history)
+                    .tabItem {
+                        Image(systemName: "clock.fill")
+                        Text("Review")
+                    }
+            }
         }
     }
 }
