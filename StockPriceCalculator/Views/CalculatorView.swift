@@ -9,13 +9,13 @@ import SwiftUI
 
 struct CalculatorView: View {
     //MARK: Stored Properties
-    @State  var stockPrice: Double?
-    @State  var numberOfShares: Double?
+    @State  var stockPrice: Double
+    @State  var numberOfShares: Double
     var result: String
     
     //MARK: Computed Properties
     var totalValue: Double {
-        return Int(stockPrice) * Int(numberOfShares) !
+        return stockPrice * numberOfShares !
     }
     
     @State var priorResults: [Result] = []
@@ -36,7 +36,7 @@ struct CalculatorView: View {
                     .font(.title2)
                     .bold()
                 //Use string interpolation \() to display within
-                Text("\(stockPrice?!.formatted(.number.precision(.fractionLength(Int()))))")
+                Text("\(stockPrice.formatted(.number.precision(.fractionLength(Int()))))")
                 
                 //Number of Shares
                 Group {
@@ -44,12 +44,12 @@ struct CalculatorView: View {
                         .font(.title2)
                         .bold()
                     //Use string interpolation \() to display within
-                    Text("\(numberOfShares?!.formatted(.number.precision(.fractionLength(Int()))))")
+                    Text("\(numberOfShares.formatted(.number.precision(.fractionLength(Int()))))")
                 }
                 
                 Group {
                     Button(action: {
-                        let latestResult = Result(stockPrice: stockPrice ??, numberOfShares: numberOfShares ??, totalValue: totalValue)
+                        let latestResult = Result(stockPrice: stockPrice, numberOfShares: numberOfShares, totalValue: totalValue)
                         priorResults.append(latestResult)
                     }, label: {
                         Text("Save Result")
@@ -86,6 +86,6 @@ struct CalculatorView: View {
 
 struct CalculatorView_Previews: PreviewProvider {
     static var previews: some View {
-        CalculatorView(stockPrice: 10, numberOfShares: 10, result: "")
+        CalculatorView(stockPrice: 10, numberOfShares: 10, result: "", history: Binding.constant(historyForPreviews))
     }
 }

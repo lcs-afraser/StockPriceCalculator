@@ -17,7 +17,7 @@ struct HistoryView: View {
                 .font(.headline.smallCaps())
                 .padding()
             
-            List(history.reversed()) { somePriorResult in ResultView(priorResult: somePriorResult)
+            List(history.reversed()) { somePriorResult in ResultView(somePriorResult: somePriorResult)
                 
             }
         }
