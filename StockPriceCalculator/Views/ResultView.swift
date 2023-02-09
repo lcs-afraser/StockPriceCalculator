@@ -16,7 +16,6 @@ struct ResultView: View {
     var body: some View {
         VStack(spacing: 10) {
             
-            // Input values
             HStack(spacing: 30) {
                 
             }
