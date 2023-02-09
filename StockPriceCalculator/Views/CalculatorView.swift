@@ -24,62 +24,30 @@ struct CalculatorView: View {
         return unwrappedStockPrice
     }
     
+    var numberOfSharesAsOptionalDouble: Double? {
+        
+        guard let unwrappedNumberOfShares = Double(providedNumberOfShares) else {
+            
+            return nil
+        }
+        
+        return unwrappedNumberOfShares
+    }
+    
     var stockPrice: String {
         
         guard let stockPriceAsDouble = stockPriceAsOptionalDouble else {
-            return "Please enter a valid price"
+            return "Please enter a valid price and ammount"
         }
         
+        guard let numberOfSharesAsDouble = numberOfSharesAsOptionalDouble else {
+            return ""
+        }
         
-        
-        
-        let totalValue = stockPriceAsDouble
+        let totalValue = stockPriceAsDouble * numberOfSharesAsDouble
         
         return"\(totalValue.formatted(.number.precision(.fractionLength(2))))"
     }
-    
-    //    var numberOfShares: Double? {
-    //
-    //        guard let numberOfSharesAsDouble = Double(providedNumberOfShares) else {
-    //
-    //            return nil
-    //        }
-    //
-    //        return numberOfSharesAsDouble
-    //    }
-    //
-    //    var totalValue: Double? {
-    //
-    //        guard stockPrice != nil else {
-    //
-    //            return nil
-    //
-    //        }
-    //
-    //
-    //        guard numberOfShares != nil else {
-    //
-    //            return nil
-    //
-    //        }
-    //
-    //        let totalValue = stockPrice! * numberOfShares!
-    //
-    //        return totalValue
-    //    }
-    //
-    //    var totalValueAsString: String {
-    //
-    //        guard totalValue != nil else {
-    //
-    //            return "0"
-    //
-    //        }
-    //
-    //        return totalValue!.formatted(.number.precision(.fractionLength(Int())))
-    //
-    //    }
-    
     
     @State var priorResults: [Result] = []
     @Binding var history: [Result]
@@ -134,7 +102,7 @@ struct CalculatorView: View {
                     let latestResult = Result(stockPrice: 1, numberOfShares: 1, totalValue: 1)
                     priorResults.append(latestResult)
                 }, label: {
-                    Text("Save Result")
+                    Text("Save")
                 })
                 .buttonStyle(.bordered)
                 .padding()
