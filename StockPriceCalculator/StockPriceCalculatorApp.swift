@@ -16,7 +16,7 @@ struct StockPriceCalculatorApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
-                CalculatorView(result: "", history: $history)
+                CalculatorView(history: $history)
                     .tabItem {
                         Image(systemName: "dollarsign.circle.fill")
                         Text("Calculator")

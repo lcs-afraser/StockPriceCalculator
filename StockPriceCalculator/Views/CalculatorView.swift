@@ -58,7 +58,7 @@ struct CalculatorView: View {
         
         guard totalValue != nil else {
             
-            return ""
+            return "No Data Inputted"
             
         }
         
@@ -139,7 +139,7 @@ struct CalculatorView: View {
                 List(priorResults.reversed()) {  currentResult in
                     HStack {
                         Spacer()
-                        ResultView(somePriorResult: currentResult)
+                        ResultView(priorResult: currentResult)
                         Spacer()
                     }
                 }
