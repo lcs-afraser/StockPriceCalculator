@@ -105,8 +105,8 @@ struct CalculatorView: View {
                 }
                     Group {
                         Button(action: {
-//                            let latestResult = Result(stockPrice: stockPrice, numberOfShares: numberOfShares, totalValue: totalValue)
-//                            priorResults.append(latestResult)
+                            let latestResult = Result(stockPrice: stockPrice ?? stockPrice!, numberOfShares: numberOfShares ?? numberOfShares ?? totalValue!, totalValue: totalValue!)
+                            priorResults.append(latestResult)
                         }, label: {
                             Text("Save Result")
                         })
