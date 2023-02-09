@@ -14,57 +14,71 @@ struct CalculatorView: View {
     var result: String
     
     //MARK: Computed Properties
-    var stockPrice: Double? {
+    var stockPriceAsOptionalDouble: Double? {
         
-        guard let stockPriceAsDouble = Double(providedStockPrice) else {
+        guard let unwrappedStockPrice = Double(providedStockPrice) else {
             
             return nil
         }
         
-        return stockPriceAsDouble
+        return unwrappedStockPrice
     }
     
-    var numberOfShares: Double? {
+    var stockPrice: String {
         
-        guard let numberOfSharesAsDouble = Double(providedNumberOfShares) else {
-            
-            return nil
+        guard let stockPriceAsDouble = stockPriceAsOptionalDouble else {
+            return "Please enter a valid price"
         }
         
-        return numberOfSharesAsDouble
+        
+        
+        
+        let totalValue = stockPriceAsDouble
+        
+        return"\(totalValue.formatted(.number.precision(.fractionLength(2))))"
     }
     
-    var totalValue: Double? {
-        
-        guard stockPrice != nil else {
-            
-            return nil
-            
-        }
-        
-        
-        guard numberOfShares != nil else {
-            
-            return nil
-            
-        }
-        
-        let totalValue = stockPrice! * numberOfShares!
-        
-        return totalValue
-    }
-    
-    var totalValueAsString: String {
-        
-        guard totalValue != nil else {
-            
-            return "No Data Inputted"
-            
-        }
-        
-        return totalValue!.formatted(.number.precision(.fractionLength(Int())))
-        
-    }
+    //    var numberOfShares: Double? {
+    //
+    //        guard let numberOfSharesAsDouble = Double(providedNumberOfShares) else {
+    //
+    //            return nil
+    //        }
+    //
+    //        return numberOfSharesAsDouble
+    //    }
+    //
+    //    var totalValue: Double? {
+    //
+    //        guard stockPrice != nil else {
+    //
+    //            return nil
+    //
+    //        }
+    //
+    //
+    //        guard numberOfShares != nil else {
+    //
+    //            return nil
+    //
+    //        }
+    //
+    //        let totalValue = stockPrice! * numberOfShares!
+    //
+    //        return totalValue
+    //    }
+    //
+    //    var totalValueAsString: String {
+    //
+    //        guard totalValue != nil else {
+    //
+    //            return "0"
+    //
+    //        }
+    //
+    //        return totalValue!.formatted(.number.precision(.fractionLength(Int())))
+    //
+    //    }
     
     
     @State var priorResults: [Result] = []
@@ -86,7 +100,7 @@ struct CalculatorView: View {
                 HStack(spacing: 5) {
                     Text("$")
                     
-                    TextField("Input", text: $providedStockPrice)
+                    TextField("0.00", text: $providedStockPrice)
                 }
                 .padding()
                 
@@ -100,7 +114,7 @@ struct CalculatorView: View {
                     HStack(spacing: 5) {
                         Text("#")
                         
-                        TextField("Input", text: $providedNumberOfShares)
+                        TextField("0", text: $providedNumberOfShares)
                     }
                 }
                 .padding()
@@ -112,12 +126,12 @@ struct CalculatorView: View {
                     .font(.title2)
                     .bold()
                 
-                Text(totalValueAsString)
+                Text(stockPrice)
                 
             }
             Group {
                 Button(action: {
-                    let latestResult = Result(stockPrice: stockPrice ?? stockPrice!, numberOfShares: numberOfShares ?? numberOfShares ?? totalValue!, totalValue: totalValue!)
+                    let latestResult = Result(stockPrice: 1, numberOfShares: 1, totalValue: 1)
                     priorResults.append(latestResult)
                 }, label: {
                     Text("Save Result")
