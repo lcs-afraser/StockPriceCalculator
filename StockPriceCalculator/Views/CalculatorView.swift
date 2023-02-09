@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CalculatorView: View {
     //MARK: Stored Properties
-    @State  var providedStockPrice = ""
-    @State  var providedNumberOfShares = ""
+    @State var providedStockPrice = ""
+    @State var providedNumberOfShares = ""
     var result: String
     
     //MARK: Computed Properties
@@ -41,6 +41,7 @@ struct CalculatorView: View {
             return nil
             
         }
+        
         
         guard numberOfShares != nil else {
             
@@ -73,27 +74,38 @@ struct CalculatorView: View {
     
     //UI
     var body: some View {
-        VStack(spacing: 30) {
+        VStack(spacing: 10) {
+            Group {
+                //Stock Price
+                Spacer(minLength: 50)
+                Text("Current Stock Price")
+                    .font(.title2)
+                    .bold()
+                
+                //Make the Input
+                HStack(spacing: 5) {
+                    Text("$")
+                    
+                    TextField("Input", text: $providedStockPrice)
+                }
+                .padding()
+                
+                //Number of Shares
                 Group {
-                    //Stock Price
-                  Spacer()
-                    Text("Stock Price at Purchase")
+                    Text("Number of Shares")
                         .font(.title2)
                         .bold()
                     
                     //Make the Input
-                    TextField("Input", text: $providedStockPrice)
-                    
-                    //Number of Shares
-                    Group {
-                        Text("Number of Shares")
-                            .font(.title2)
-                            .bold()
+                    HStack(spacing: 5) {
+                        Text("#")
                         
-                        //Make the Input
                         TextField("Input", text: $providedNumberOfShares)
                     }
                 }
+                .padding()
+            }
+            
             //Total Value
             Group {
                 Text("Total Value of Holdings")
