@@ -37,7 +37,7 @@ struct ProfitView: View {
     
     var currentStockPriceAsOptionalDouble: Double? {
         
-        guard let unwrappedCurrentStockPrice = Double(providedStockPriceAtPurchase) else {
+        guard let unwrappedCurrentStockPrice = Double(providedCurrentStockPrice) else {
             
             return nil
         }
@@ -45,18 +45,18 @@ struct ProfitView: View {
         return unwrappedCurrentStockPrice
     }
     
-    var stockPrice: String {
+    var profitMade: String {
         
         guard let stockPriceAtPurchaseAsDouble = stockPriceAtPurchaseAsOptionalDouble else {
-            return "Please enter a valid price and ammount"
+            return "Please enter valid prices and ammount"
         }
         
         guard let numberOfSharesAsDouble = numberOfSharesAsOptionalDouble else {
-            return ""
+            return "Please enter valid prices and ammount"
         }
         
         guard let currentStockPriceAsDouble = currentStockPriceAsOptionalDouble else {
-            return ""
+            return "Please enter valid prices and ammount"
         }
         
         let profit = (currentStockPriceAsDouble * numberOfSharesAsDouble) - (stockPriceAtPurchaseAsDouble * numberOfSharesAsDouble)
@@ -71,7 +71,7 @@ struct ProfitView: View {
     
     //UI
     var body: some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 5) {
             Group {
                 //Stock Price At Purchase
                 Spacer(minLength: 50)
@@ -123,9 +123,10 @@ struct ProfitView: View {
                     .font(.title2)
                     .bold()
                 
-                Text(stockPrice)
+                Text(profitMade)
                 
             }
+            //History Button
             Group {
                 Button(action: {
                     let latestResult = Result(stockPrice: 1, numberOfShares: 1, totalValue: 1)
