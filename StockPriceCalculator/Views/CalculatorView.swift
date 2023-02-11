@@ -41,7 +41,7 @@ struct CalculatorView: View {
         }
         
         guard let numberOfSharesAsDouble = numberOfSharesAsOptionalDouble else {
-            return ""
+            return "Please enter a valid price and ammount"
         }
         
         let totalValue = stockPriceAsDouble * numberOfSharesAsDouble
@@ -97,9 +97,13 @@ struct CalculatorView: View {
                 Text(stockPrice)
                 
             }
+            let price = String(providedStockPrice)
+            
+            let shares = String(providedNumberOfShares)
+            
             Group {
                 Button(action: {
-                    let latestResult = Result(stockPrice: 1, numberOfShares: 1, totalValue: 1, stockPriceAtPurchase: 1, currentStockPrice: 1, numberOfSharesForProfit: 1, profit: 1)
+                    let latestResult = Result(stockPrice: price, numberOfShares: shares, totalValue: stockPrice, stockPriceAtPurchase: "", currentStockPrice: "", numberOfSharesForProfit: "", profit: "")
                     priorResults.append(latestResult)
                 }, label: {
                     Text("Save")

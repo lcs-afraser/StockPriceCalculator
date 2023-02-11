@@ -127,9 +127,15 @@ struct ProfitView: View {
                 
             }
             //History Button
+            
+            let currentPrice = String(providedCurrentStockPrice)
+            
+            let priceAtPurchase = String(providedStockPriceAtPurchase)
+            
+            let shares = String(providedNumberOfShares)
             Group {
                 Button(action: {
-                    let latestResult = Result(stockPrice: 1, numberOfShares: 1, totalValue: 1, stockPriceAtPurchase: 1, currentStockPrice: 1, numberOfSharesForProfit: 1, profit: 1)
+                    let latestResult = Result(stockPrice: "", numberOfShares: "", totalValue: "", stockPriceAtPurchase: currentPrice, currentStockPrice: priceAtPurchase, numberOfSharesForProfit: shares, profit: profitMade)
                     priorResults.append(latestResult)
                 }, label: {
                     Text("Save")
