@@ -14,6 +14,7 @@
 		6EDD61352992B06600118466 /* StockPriceCalculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDD61342992B06600118466 /* StockPriceCalculatorApp.swift */; };
 		6EDD61392992B06900118466 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EDD61382992B06900118466 /* Assets.xcassets */; };
 		6EDD613C2992B06900118466 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EDD613B2992B06900118466 /* Preview Assets.xcassets */; };
+		6EED68E229981C63001AF9DA /* ProfitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EED68E129981C63001AF9DA /* ProfitView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		6EDD61342992B06600118466 /* StockPriceCalculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockPriceCalculatorApp.swift; sourceTree = "<group>"; };
 		6EDD61382992B06900118466 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6EDD613B2992B06900118466 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6EED68E129981C63001AF9DA /* ProfitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				6EB0BA7C2994764300DD24CB /* CalculatorView.swift */,
+				6EED68E129981C63001AF9DA /* ProfitView.swift */,
 				6EB0BA80299478A600DD24CB /* ResultView.swift */,
 				6EB0BA8229947C1300DD24CB /* HistoryView.swift */,
 			);
@@ -164,6 +167,7 @@
 			files = (
 				6EB0BA7F299477F300DD24CB /* Result.swift in Sources */,
 				6EB0BA81299478A600DD24CB /* ResultView.swift in Sources */,
+				6EED68E229981C63001AF9DA /* ProfitView.swift in Sources */,
 				6EB0BA8329947C1300DD24CB /* HistoryView.swift in Sources */,
 				6EB0BA7D2994764300DD24CB /* CalculatorView.swift in Sources */,
 				6EDD61352992B06600118466 /* StockPriceCalculatorApp.swift in Sources */,

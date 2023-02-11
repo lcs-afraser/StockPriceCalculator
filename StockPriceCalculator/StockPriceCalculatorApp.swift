@@ -24,7 +24,12 @@ struct StockPriceCalculatorApp: App {
                 HistoryView(history: $history)
                     .tabItem {
                         Image(systemName: "clock.fill")
-                        Text("Review")
+                        Text("History")
+                    }
+                ProfitView(result: "", history: $history)
+                    .tabItem {
+                        Image(systemName: "plus.forwardslash.minus")
+                        Text("Profit")
                     }
             }
         }
