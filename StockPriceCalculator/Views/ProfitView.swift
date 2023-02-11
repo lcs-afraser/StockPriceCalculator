@@ -129,7 +129,7 @@ struct ProfitView: View {
             //History Button
             Group {
                 Button(action: {
-                    let latestResult = Result(stockPrice: 1, numberOfShares: 1, totalValue: 1)
+                    let latestResult = Result(stockPrice: 1, numberOfShares: 1, totalValue: 1, stockPriceAtPurchase: 1, currentStockPrice: 1, numberOfSharesForProfit: 1, profit: 1)
                     priorResults.append(latestResult)
                 }, label: {
                     Text("Save")
@@ -151,7 +151,7 @@ struct ProfitView: View {
                 List(priorResults.reversed()) {  currentResult in
                     HStack {
                         Spacer()
-                        ResultView(priorResult: currentResult)
+                        SecondResultView(secondPriorResult: currentResult)
                         Spacer()
                     }
                 }

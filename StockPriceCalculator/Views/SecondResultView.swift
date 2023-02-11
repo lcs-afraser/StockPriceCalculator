@@ -1,16 +1,15 @@
 //
-//  ResultView.swift
+//  SecondResultView.swift
 //  StockPriceCalculator
 //
-//  Created by Alistair Fraser on 2023-02-08.
+//  Created by Alistair Fraser on 2023-02-11.
 //
 
 import SwiftUI
 
-struct ResultView: View {
-    
+struct SecondResultView: View {
     // MARK: Stored properties
-    let priorResult: Result
+    let secondPriorResult: Result
     
     // MARK: Computed properties
     var body: some View {
@@ -18,24 +17,28 @@ struct ResultView: View {
             
             VStack(alignment: .leading, spacing: 3) {
                 
+                Text("Stock Price")
+
+                Text("At Purchase")
+
+                // Divider
+                Text("")
+                
                 Text("Current")
 
                 Text("Stock Price")
-
+                
                 // Divider
                 Text("")
-                
+
                 Text("Number")
 
                 Text("Of Shares")
+
+                // Divider
+                Text("")
                 
-                // Divider
-                Text("")
-
-                Text("Total Value of Holdings")
-
-                // Divider
-                Text("")
+                Text("Profit")
             }
             .font(Font.custom("Courier New",
                               size: 14.0,
@@ -46,17 +49,22 @@ struct ResultView: View {
             
             VStack(alignment: .trailing, spacing: 1) {
 
-                Text("$ \(priorResult.stockPrice)")
+                Text("$ \(secondPriorResult.stockPriceAtPurchase)")
                 
                 Text("-----------")
+                Text("")
 
-                Text("$ \(priorResult.numberOfShares)")
+                Text("$ \(secondPriorResult.currentStockPrice)")
                 
                 Text("-----------")
+                Text("")
 
-                Text("$ \(priorResult.totalValue)")
-                
+                Text("$ \(secondPriorResult.numberOfSharesForProfit)")
+                Text("")
                 Text("===========")
+                
+                Text("$ \(secondPriorResult.profit)")
+                
             }
             .font(Font.custom("Courier New",
                               size: 14,
@@ -67,8 +75,8 @@ struct ResultView: View {
     }
 }
 
-struct ResultView_Previews: PreviewProvider {
+struct SecondResultView_Previews: PreviewProvider {
     static var previews: some View {
-        ResultView(priorResult: resultForPreviews)
+        SecondResultView(secondPriorResult: resultForPreviews)
     }
 }

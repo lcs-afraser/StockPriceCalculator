@@ -18,14 +18,16 @@ struct HistoryView: View {
                 .padding()
             
             List(history.reversed()) { somePriorResult in ResultView(priorResult: somePriorResult)
-                
+            }
+            
+            List(history.reversed()) { somePriorResult in SecondResultView(secondPriorResult: somePriorResult)
             }
         }
     }
 }
-
-struct HistoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        HistoryView(history: Binding.constant(historyForPreviews))
+    
+    struct HistoryView_Previews: PreviewProvider {
+        static var previews: some View {
+            HistoryView(history: Binding.constant(historyForPreviews))
+        }
     }
-}
