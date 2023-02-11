@@ -9,19 +9,20 @@ import SwiftUI
 
 struct ProfitView: View {
     //MARK: Stored Properties
-    @State var providedStockPrice = ""
+    @State var providedStockPriceAtPurchase = ""
+    @State var providedCurrentStockPrice = ""
     @State var providedNumberOfShares = ""
     var result: String
     
     //MARK: Computed Properties
-    var stockPriceAsOptionalDouble: Double? {
+    var stockPriceAtPurchaseAsOptionalDouble: Double? {
         
-        guard let unwrappedStockPrice = Double(providedStockPrice) else {
+        guard let unwrappedStockPriceAtPurchase = Double(providedStockPriceAtPurchase) else {
             
             return nil
         }
         
-        return unwrappedStockPrice
+        return unwrappedStockPriceAtPurchase
     }
     
     var numberOfSharesAsOptionalDouble: Double? {
@@ -34,9 +35,19 @@ struct ProfitView: View {
         return unwrappedNumberOfShares
     }
     
+    var currentStockPriceAsOptionalDouble: Double? {
+        
+        guard let unwrappedCurrentStockPrice = Double(providedStockPriceAtPurchase) else {
+            
+            return nil
+        }
+        
+        return unwrappedCurrentStockPrice
+    }
+    
     var stockPrice: String {
         
-        guard let stockPriceAsDouble = stockPriceAsOptionalDouble else {
+        guard let stockPriceAtPurchaseAsDouble = stockPriceAtPurchaseAsOptionalDouble else {
             return "Please enter a valid price and ammount"
         }
         
@@ -44,9 +55,13 @@ struct ProfitView: View {
             return ""
         }
         
-        let totalValue = stockPriceAsDouble * numberOfSharesAsDouble
+        guard let currentStockPriceAsDouble = currentStockPriceAsOptionalDouble else {
+            return ""
+        }
         
-        return"\(totalValue.formatted(.number.precision(.fractionLength(2))))"
+        let profit = (currentStockPriceAsDouble * numberOfSharesAsDouble) - (stockPriceAtPurchaseAsDouble * numberOfSharesAsDouble)
+        
+        return"\(profit.formatted(.number.precision(.fractionLength(2))))"
     }
     
     @State var priorResults: [Result] = []
@@ -58,8 +73,22 @@ struct ProfitView: View {
     var body: some View {
         VStack(spacing: 10) {
             Group {
-                //Stock Price
+                //Stock Price At Purchase
                 Spacer(minLength: 50)
+                Text("Stock Price At Purchase")
+                    .font(.title2)
+                    .bold()
+                
+                //Make the Input
+                HStack(spacing: 5) {
+                    Text("$")
+                    
+                    TextField("0.00", text: $providedStockPriceAtPurchase)
+                }
+                .padding()
+            }
+            Group {
+                //Current Stock Price
                 Text("Current Stock Price")
                     .font(.title2)
                     .bold()
@@ -68,7 +97,7 @@ struct ProfitView: View {
                 HStack(spacing: 5) {
                     Text("$")
                     
-                    TextField("0.00", text: $providedStockPrice)
+                    TextField("0.00", text: $providedCurrentStockPrice)
                 }
                 .padding()
                 
@@ -90,7 +119,7 @@ struct ProfitView: View {
             
             //Total Value
             Group {
-                Text("Total Value of Holdings")
+                Text("Profit Made")
                     .font(.title2)
                     .bold()
                 
